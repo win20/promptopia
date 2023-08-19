@@ -45,7 +45,6 @@ const MyProfile = () => {
     }
   };
 
-  console.log(posts);
   return (
     <Profile
       name="My"
