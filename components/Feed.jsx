@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 
 import PromptCard from './PromptCard';
+import { plugin } from 'mongoose';
 
 const PromptCardList = ({data, handleTagClick}) => {
   return (
@@ -22,9 +23,25 @@ const Feed = () => {
 
   const [searchText, setsearchText] = useState('');
   const [posts, setposts] = useState([]);
+  const [searchedPosts, setSearchedPosts] = useState([]);
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = async (e) => {
+    // try {
+    //   const response = await fetch('/api/prompt/search', {
 
+    //   });
+    // } catch (error) {
+    //   console.log(error);
+    // }
+
+    const search = e.target.value;
+
+    // if (search === '') {
+    //   setSearchedPosts([]);
+    // }
+
+    const filteredPosts = posts.filter((p) => p.prompt.includes(search))
+    setSearchedPosts(filteredPosts);
   };
 
   useEffect(() => {
@@ -39,13 +56,12 @@ const Feed = () => {
 
   return (
     <section className="feed">
-      <form action="" className='relative w-full flex-center'>
-        <input type="text" placeholder='Search for a tag or a username' value={searchText} onChange={handleSearchChange} className='search_input peer' required />
-
+      <form className='relative w-full flex-center'>
+        <input type="text" placeholder='Search for a prompt' onChange={handleSearchChange} className='search_input peer' required />
       </form>
 
       <PromptCardList
-        data={posts}
+        data={searchedPosts.length ? searchedPosts : posts}
         handleTagClick={() => {}}
       />
     </section>
