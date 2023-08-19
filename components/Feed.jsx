@@ -26,19 +26,7 @@ const Feed = () => {
   const [searchedPosts, setSearchedPosts] = useState([]);
 
   const handleSearchChange = async (e) => {
-    // try {
-    //   const response = await fetch('/api/prompt/search', {
-
-    //   });
-    // } catch (error) {
-    //   console.log(error);
-    // }
-
     const search = e.target.value;
-
-    // if (search === '') {
-    //   setSearchedPosts([]);
-    // }
 
     const filteredPosts = posts.filter((p) => p.prompt.includes(search))
     setSearchedPosts(filteredPosts);
