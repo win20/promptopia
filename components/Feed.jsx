@@ -21,15 +21,11 @@ const PromptCardList = ({data, handleTagClick}) => {
 
 const Feed = () => {
   const [posts, setposts] = useState([]);
+  const [search, setSearch] = useState('')
   const [searchedPosts, setSearchedPosts] = useState([]);
 
-  const handleSearchChange = async (e) => {
-    const search = e.target.value;
-
-    const filteredPosts = posts.filter((p) => {
-      return p.prompt.includes(search) || p.creator.username.includes(search) || p.tag.includes(search);
-    });
-    setSearchedPosts(filteredPosts);
+  const handleTagClick = (clickedTag) => {
+    setSearch(clickedTag);
   };
 
   useEffect(() => {
@@ -42,15 +38,29 @@ const Feed = () => {
     fetchPosts();
   }, []);
 
+  useEffect(() => {
+    const filteredPosts = posts.filter((p) => {
+      return p.prompt.includes(search) || p.creator.username.includes(search) || p.tag.includes(search);
+    });
+
+    setSearchedPosts(filteredPosts);
+  }, [search])
+
   return (
     <section className="feed">
       <form className='relative w-full flex-center'>
-        <input type="text" placeholder='Search for a prompt' onChange={handleSearchChange} className='search_input peer' required />
+        <input
+          type="text"
+          value={search}
+          placeholder='Search for a prompt'
+          onChange={(e) => setSearch(e.target.value)}
+          className='search_input peer' required
+        />
       </form>
 
       <PromptCardList
         data={searchedPosts.length ? searchedPosts : posts}
-        handleTagClick={() => {}}
+        handleTagClick={handleTagClick}
       />
     </section>
   )
