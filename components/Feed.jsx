@@ -20,15 +20,15 @@ const PromptCardList = ({data, handleTagClick}) => {
 }
 
 const Feed = () => {
-
-  const [searchText, setsearchText] = useState('');
   const [posts, setposts] = useState([]);
   const [searchedPosts, setSearchedPosts] = useState([]);
 
   const handleSearchChange = async (e) => {
     const search = e.target.value;
 
-    const filteredPosts = posts.filter((p) => p.prompt.includes(search))
+    const filteredPosts = posts.filter((p) => {
+      return p.prompt.includes(search) || p.creator.username.includes(search) || p.tag.includes(search);
+    });
     setSearchedPosts(filteredPosts);
   };
 
