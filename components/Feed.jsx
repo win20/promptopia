@@ -30,7 +30,7 @@ const Feed = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch('/api/prompt');
+      const response = await fetch('/api/prompt', {next: {tags: ['prompt']}});
       const data = await response.json();
       setposts(data);
     };

@@ -31,7 +31,14 @@ const CreatePrompt = () => {
         })
       })
 
-      if (response.ok) {
+      const revalidateResponse = await fetch(
+        '/api/prompt/revalidate',
+        {
+          method: 'POST',
+        }
+      );
+
+      if (response.ok && revalidateResponse.ok) {
         router.push('/');
       }
     } catch (error) {
