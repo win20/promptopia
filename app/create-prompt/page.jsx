@@ -31,14 +31,14 @@ const CreatePrompt = () => {
         })
       })
 
-      const revalidateResponse = await fetch(
-        '/api/prompt/revalidate',
-        {
-          method: 'POST',
-        }
-      );
+      // const revalidateResponse = await fetch(
+      //   '/api/prompt/revalidate',
+      //   {
+      //     method: 'POST',
+      //   }
+      // );
 
-      if (response.ok && revalidateResponse.ok) {
+      if (response.ok) {
         router.push('/');
       }
     } catch (error) {
