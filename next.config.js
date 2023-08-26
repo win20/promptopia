@@ -14,6 +14,7 @@ const nextConfig = {
     }
     return config
   },
+  assetPrefix: '.',
 }
 
 module.exports = nextConfig
