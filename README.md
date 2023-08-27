@@ -21,6 +21,7 @@ https://promptopia.winbarua.dev
 
 ## Built with
 - NextJS
+- Next Auth
 - Javascript
 - TailwindCSS
 - MongoDB
