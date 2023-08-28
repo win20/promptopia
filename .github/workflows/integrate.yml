@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   build:
+    name: Run linter and build
     runs-on: ubuntu-22.04
 
     steps:
@@ -17,18 +18,4 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-      - run: npm run build
-
-  # lint:
-  #   runs-on: ubuntu-22.04
-
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - name: Run Linter
-
-  #       uses: github/super-linter@v5.2.1
-  #       env:
-  #         VALIDATE_ALL_CODEBASE: true
-  #         VALIDATE_JAVASCRIPT_ES: true
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         LINTER_RULES_PATH: /
+      - run: npm run build # also runs linter
