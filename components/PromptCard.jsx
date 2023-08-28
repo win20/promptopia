@@ -4,12 +4,11 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 const PromptCard = ({post, handleTagClick, handleEdit, handleDelete}) => {
   const {data: session} = useSession();
   const pathName = usePathname();
-  const router = useRouter();
 
   const [copied, setcopied] = useState('');
 
