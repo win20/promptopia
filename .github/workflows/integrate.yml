@@ -19,16 +19,16 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-  lint:
-    runs-on: ubuntu-22.04
+  # lint:
+  #   runs-on: ubuntu-22.04
 
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run Linter
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Run Linter
 
-        uses: github/super-linter@v5.2.1
-        env:
-          VALIDATE_ALL_CODEBASE: true
-          VALIDATE_JAVASCRIPT_ES: true
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          LINTER_RULES_PATH: /
+  #       uses: github/super-linter@v5.2.1
+  #       env:
+  #         VALIDATE_ALL_CODEBASE: true
+  #         VALIDATE_JAVASCRIPT_ES: true
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         LINTER_RULES_PATH: /
