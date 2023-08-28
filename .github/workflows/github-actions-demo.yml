@@ -17,5 +17,6 @@ jobs:
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.SSHKEY }}
           script: |
+            cd /var/www/promptopia.winbarua.dev
             git pull origin main
             ls
