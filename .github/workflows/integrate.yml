@@ -3,8 +3,25 @@ name: Integrate
 on: [push]
 
 jobs:
-  build:
-    name: Run linter and build
+  # build:
+  #   name: Run linter and build
+  #   runs-on: ubuntu-22.04
+
+  #   steps:
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0
+
+  #     - name: Setup Project
+  #       uses: actions/setup-node@v3.8.1
+  #       with:
+  #         node-version: 20
+  #     - run: npm ci
+  #     - run: npm run build # also runs linter
+
+  lint:
+    name: Lint Code Base
     runs-on: ubuntu-22.04
 
     steps:
@@ -13,9 +30,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Project
-        uses: actions/setup-node@v3.8.1
-        with:
-          node-version: 20
-      - run: npm ci
-      - run: npm run build # also runs linter
+      - name: Lint Code
+        uses: github/super-linter@v5
+        env:
+          LINTER_RULES_PATH: /
+          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_JAVASCRIPT_ES: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
