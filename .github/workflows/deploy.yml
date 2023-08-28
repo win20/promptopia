@@ -19,4 +19,6 @@ jobs:
           script: |
             cd /var/www/promptopia.winbarua.dev
             git pull origin main
-            ls
+            npm install
+            npm run build
+            pm2 restart ${{ secrets.APP_NAME_PM2 }}
